@@ -13,24 +13,15 @@ import utilities.PropertiesSetup;
 
 public class MyMainClass {
 
-	static PropertiesSetup ps;
-	
-	public MyMainClass() throws FileNotFoundException, IOException {
-		ps = new PropertiesSetup();
-		}
-	
-	public static void main(String[] args) throws IOException {
-		MyMainClass main = new MyMainClass();
-		getTestDataFromExcel();
-	}
-
 	private static void getTestDataFromExcel() throws IOException {
+		//Property file and input file
+		PropertiesSetup ps = new PropertiesSetup();
 		FileInputStream is = new FileInputStream(new File("resources//mpk.xls"));
 		HSSFWorkbook wb = new HSSFWorkbook(is);
 		HSSFSheet sh = wb.getSheetAt(0);
-		
+
 		System.out.println(ps.getPropertyFromConfig("d"));
-		
+
 		// looping status yes tetscases
 		for (int i = 1; i <= sh.getLastRowNum(); i++) {
 			if (sh.getRow(i).getCell(0).toString().equalsIgnoreCase("y")
